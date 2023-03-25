@@ -1,0 +1,47 @@
+version: '3'
+services:
+  nginx:
+    build: requirements/nginx/.
+    restart: always
+    container_name: "nginx_container"
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    volumes:
+      - wp:/var/www/wordpress
+    networks:
+      - inceptionNetwork
+  maria-db:
+    build: requirements/mariadb/.
+    restart: always
+    container_name: "mariaDB_container"
+    volumes:
+      - db:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - inceptionNetwork
+  wordpress:
+    build: requirements/wordpress/.
+    restart: always
+    depends_on:
+      - maria-db
+    volumes:
+      - wp:/var/www/wordpress
+    container_name: "wordpress_container"
+    env_file:
+      - .env
+    environment:
+      - WORDPRESS_ADMIN_PASS=klaarous
+      - WORDPRESS_USER_PASS=user123
+    networks:
+      - inceptionNetwork
+
+
+volumes:
+  wp:
+  db:
+
+networks:
+  inceptionNetwork:
