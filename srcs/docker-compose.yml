@@ -37,7 +37,11 @@ services:
       - WORDPRESS_USER_PASS=user123
     networks:
       - inceptionNetwork
-
+  static-site:
+      build: requirements/bonus/staticSite/.
+      restart: always
+      ports:
+         - "90:90"
 
 volumes:
   wp:

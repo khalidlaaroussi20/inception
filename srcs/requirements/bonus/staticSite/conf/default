@@ -1,0 +1,10 @@
+server {
+    listen 90 default_server;
+    root /var/www/staticSite;
+    index index.html;
+
+    server_name _;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
