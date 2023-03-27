@@ -47,11 +47,15 @@ volumes:
   wp:
     driver: local
     driver_opts:
-      source: /home/klaarous/data
+      o: bind
+      type: none
+      device: /home/klaarous/data/wp/
   db:
     driver: local
     driver_opts:
-        source: /home/klaarous/data
+      o: bind
+      type: none
+      device: /home/klaarous/data/db/
 
 networks:
   inceptionNetwork:

@@ -15,8 +15,6 @@ sed -i  "/DB_USER/s#.*#define( 'DB_USER', '$DB_USER' );#g" /var/www/wordpress/wp
 sed -i  "/DB_PASSWORD/s#.*#define( 'DB_PASSWORD', '$DB_PASS' );#g" /var/www/wordpress/wp-config.php
 sed -i  "/DB_HOST/s#.*#define( 'DB_HOST', '$DB_HOST' );#g" /var/www/wordpress/wp-config.php
 
-echo $WORDPRESS_DOMAIN;
-
 wp core install --url="$WORDPRESS_DOMAIN"/ --title="$WORDPRESS_TITLE" \
     --admin_user="$WORDPRESS_ADMIN_USER" --admin_password="$WORDPRESS_ADMIN_PASS" \
     --admin_email="$WORDPRESS_ADMIN_EMAIL" --skip-email --allow-root
