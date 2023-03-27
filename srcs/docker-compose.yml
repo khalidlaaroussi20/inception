@@ -45,7 +45,13 @@ services:
 
 volumes:
   wp:
+    driver: local
+    driver_opts:
+      source: /home/klaarous/data
   db:
+    driver: local
+    driver_opts:
+        source: /home/klaarous/data
 
 networks:
   inceptionNetwork:
