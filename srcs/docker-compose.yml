@@ -3,6 +3,7 @@ services:
   nginx:
     build: requirements/nginx/.
     restart: always
+    image: nginx
     container_name: "nginx_container"
     depends_on:
       - wordpress
@@ -15,6 +16,7 @@ services:
   maria-db:
     build: requirements/mariadb/.
     restart: always
+    image: maria-db
     container_name: "mariaDB_container"
     volumes:
       - db:/var/lib/mysql
@@ -29,17 +31,17 @@ services:
       - maria-db
     volumes:
       - wp:/var/www/wordpress
+    image: wordpress
     container_name: "wordpress_container"
     env_file:
       - .env
-    environment:
-      - WORDPRESS_ADMIN_PASS=klaarous
-      - WORDPRESS_USER_PASS=user123
     networks:
       - inceptionNetwork
   static-site:
       build: requirements/bonus/staticSite/.
       restart: always
+      container_name: "static-site_container"
+      image: static-site
       ports:
          - "90:90"
 
